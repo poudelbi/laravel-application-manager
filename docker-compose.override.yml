@@ -1,0 +1,21 @@
+# Development override configuration
+version: '3.8'
+
+services:
+  app:
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - LOG_LEVEL=debug
+    volumes:
+      - .:/var/www/html/master-app
+      # Mount the entire application directory for live updates
+    # Expose port for debugging
+    ports:
+      - "9000:9000"
+
+  nginx:
+    volumes:
+      # Use development nginx config if needed
+      - ./docker/nginx-dev.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx-app-dev.conf:/etc/nginx/sites-available/default:ro
