@@ -1,0 +1,1 @@
+# laravel-application-manager
